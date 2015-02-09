@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html data-ng-app="demoApp">
+<head>
+   <script src="Scripts/angular.js"></script>
+   <script src="Scripts/angular-route.js"></script>
+   <title>Adding Module Configuration and Routing</title>
+</head>
+<body>
+	<div class="container" data-ng-app="demoApp">
+		<div>
+			<h3>Adding Module Configuration and Routing</h3>
+			<!-- ng-view handles loading partials into it based 
+			upon routes -->
+			<div data-ng-view=""></div>
+		</div>
+	</div>
+
+	<script>
+		var demoApp = angular.module('demoApp', ['ngRoute']);
+
+		demoApp.config(function ($routeProvider) {
+			$routeProvider
+				.when('/',
+					{
+						controller: 'SimpleController',
+						templateUrl: 'Partial1.html'
+					})
+				//Define a route that has a route parameter in it (:customerID)
+				.when('/partial2',
+					{
+						controller: 'SimpleController',
+						templateUrl: 'Partial2.html'
+					})
+				.otherwise({ redirectTo: '/' });
+		});
+
+		demoApp.controller('SimpleController', function ($scope) {
+			$scope.customers = [
+				{ name: 'Dave Jones', city: 'Phoenix' },
+				{ name: 'Jamie Riley', city: 'Atlanta' },
+				{ name: 'Heedy Wahlin', city: 'Chandler' },
+				{ name: 'Thomas Winter', city: 'Seattle' }
+			];
+		});
+	</script>
+
+	
+</body>
+</html>

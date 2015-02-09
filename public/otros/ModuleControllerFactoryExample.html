@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html data-ng-app="demoApp">
+<head>
+	<script src="Scripts/angular.js"></script>
+	<script src="Scripts/angular-route.js"></script>
+	<title></title>
+</head>
+<body>
+	<div class="container">
+		<div data-ng-controller="SimpleController">
+			<h3>Adding a Module and Controller</h3>
+			Name:<br />
+			<input type="text" data-ng-model="inputData.name" placeholder="name" />
+			<br />
+			City:<br />
+			<input type="text" data-ng-model="inputData.city" placeholder="city" />
+			<br />
+			<button class="btn btn-primary" data-ng-click="addCustomer()">Add Customer</button>
+			<br />
+			<br />
+
+			Filter by Name:
+			<input type="text" data-ng-model="nameText" />
+			<br />
+			<ul>
+				<li data-ng-repeat="customer in customers | filter:nameText | orderBy:'name'">{{ customer.name }} - {{ customer.city }}</li>
+			</ul>
+		</div>
+	</div>
+
+	<script>
+		var demoApp = angular.module('demoApp', []);
+		demoApp.simpleFactory = demoApp.factory('simpleFactory', function() {
+			var factory = {};
+			var customers = [
+				{name: 'Jon', city: 'Vitoria-Gasteiz'},
+				{name: 'Aitor', city: 'Bilbao'},
+				{name: 'Eider', city: 'Vitoria-Gasteiz'},
+				{name: 'Ane', city: 'Donostia'}
+			];
+			factory.getCustomers = function () {
+				return customers;
+			};
+			
+			factory.addCustomer = function (customer) {
+				customers.push(
+					{
+						name: customer.name,
+						city: customer.city
+					}
+				);
+			};
+			return factory;
+		});
+		demoApp.controller('SimpleController', function ($scope, simpleFactory) {
+			$scope.customers = simpleFactory.getCustomers();
+			$scope.addCustomer = function () {
+				simpleFactory.addCustomer({name: $scope.inputData.name, city: $scope.inputData.city});
+			};
+		});
+	</script>
+
+	
+</body>
+</html>

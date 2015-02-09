@@ -1,0 +1,19 @@
+{
+  "name": "conferenceApp",
+  "version": "1.0.0",
+  "description": "app for conferences",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.10.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "conference"
+  ],
+  "author": "borja tovar",
+  "license": "ISC"
+}

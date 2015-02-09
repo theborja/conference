@@ -1,0 +1,103 @@
+<div class= "bloghome view">
+  <div class="container-fluid">
+     <div class="container">		
+		<div class="row">
+            <div class="col-md-6">
+                
+                <br />
+                <input data-ng-model="newNew.title" type="text" placeholder="title">
+            </div>
+			
+			<div class="col-md-6">
+                
+                <br />
+                <input data-ng-model="newNew.description" type="text" placeholder="description">
+            </div>
+            
+            <div class="col-md-6">
+                
+                <br />
+                <input data-ng-model="newNew.body" type="text" placeholder="body">
+				
+				<br /><br />
+                <button id="submit" class="btn btn-primary" type="button" 
+                    data-ng-disabled="!newNew.title|| !newNew.description || !newNew.body" 
+                    data-ng-click="insertNew()">Add post</button>
+            </div>
+        </div>
+
+        <br /><br />
+        <div>
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8" >
+			
+			<div class= "posts" data-ng-repeat="new in news | orderBy:'title'">
+
+                <!-- First Blog Post -->
+                <h2>
+                   {{ new.title}}
+                </h2>
+                <p class="lead">
+                    by <a href="index.php">Anonymous</a>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+                <hr>
+                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                <hr>
+                <p>{{new.description}}</p>
+                <a class="btn btn-primary" href="#/blogsingle/{{new.id}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+				
+				
+
+                <hr>
+
+               </div> 
+
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Blog Search Well -->
+                <div class="well">
+                    <h4>Blog Search</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                    </div>
+                    <!-- /.input-group -->
+                </div>
+
+                
+                   
+
+               
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+      
+
+    </div>
+            </div>
+</div>
